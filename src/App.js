@@ -2,7 +2,10 @@
 import './App.css';
 import React from 'react';
 
+
 function SignupForm() {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setpassword] = React.useState('');
@@ -13,7 +16,14 @@ function SignupForm() {
     console.log({email,password})
   }
 
+
+
+  function handleclick(){
+     setIsDarkMode(!isDarkMode)
+
+  }
   return (
+    <div> 
     <form onSubmit={handleSubmit}>
       <Field
         id="name"
@@ -42,7 +52,7 @@ function SignupForm() {
         }}
       />
       <Field
-          id="password"
+          id="re-enter password"
           type='password'
           label="re-enter password"
           grow={2}
@@ -69,6 +79,8 @@ function SignupForm() {
       </div>
       <button>Sign up</button>
     </form>
+    <button onClick={handleclick}   style={{ background: `${isDarkMode ? "rgba(255,255,255,1)" : "#333"}` }}>dark mode</button>
+    </div>
   );
 }
 
@@ -81,6 +93,7 @@ function Field({
   onChange,
 }) {
   return (
+    
     <div
       className="field"
       style={{ '--grow': grow }}
